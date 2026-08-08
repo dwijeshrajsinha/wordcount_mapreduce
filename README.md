@@ -96,5 +96,4 @@ for word, count in final_result.items():
 ## OUTPUT:
 <img width="810" height="240" alt="image" src="https://github.com/user-attachments/assets/37cfab94-e3cd-4638-9215-9ac8ba73a9b2" />
 ## RESULT:
-
 The Word Count program using the MapReduce programming model was implemented successfully, and the frequency of each word in the given input text was computed correctly.
