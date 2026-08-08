@@ -1,6 +1,6 @@
 # Exp 02 Word Count using MapReduce
 
-**Date:**
+**Date:08/08/2026**
 
 ## AIM:
 To implement the Word Count program using the MapReduce programming model and determine the frequency of each word in the given input text.
@@ -32,14 +32,69 @@ Compile and execute the program.
 Verify and display the word frequencies.
 
 ## PROGRAM:
+```
+text = """
+hello world
+hello python
+world of python
+"""
 
-*(Paste the Java code for the Word Count MapReduce program here.)*
+def mapper(text):
+    result = []
+
+    words = text.lower().split()
+
+    for word in words:
+        result.append((word, 1))
+
+    return result
+
+
+
+def shuffle_sort(mapped_data):
+    grouped = {}
+
+    for word, count in mapped_data:
+        if word not in grouped:
+            grouped[word] = []
+
+        grouped[word].append(count)
+
+    
+    return dict(sorted(grouped.items()))
+
+
+
+def reducer(grouped_data):
+    result = {}
+
+    for word, counts in grouped_data.items():
+        result[word] = sum(counts)
+
+    return result
+
+
+
+mapped = mapper(text)
+
+print("Mapper Output:")
+print(mapped)
+
+
+shuffled = shuffle_sort(mapped)
+
+print("\nShuffle & Sort Output:")
+print(shuffled)
+
+final_result = reducer(shuffled)
+
+print("\nReducer Output:")
+for word, count in final_result.items():
+    print(word, ":", count)
+```
 
 ## OUTPUT:
-
-*(Paste the execution output showing the frequency of each word here.)*
-
+<img width="810" height="240" alt="image" src="https://github.com/user-attachments/assets/37cfab94-e3cd-4638-9215-9ac8ba73a9b2" />
 ## RESULT:
 
 The Word Count program using the MapReduce programming model was implemented successfully, and the frequency of each word in the given input text was computed correctly.
-```
